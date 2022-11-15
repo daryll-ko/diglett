@@ -1,7 +1,12 @@
 import "./GridSquare.css";
 
-function GridSquare({ value }) {
-	return <div className="square">{value}</div>;
+function GridSquare({ i, j, isOrigin, pickOrigin }) {
+	return (
+		<div
+			className={`square ${isOrigin ? "origin" : ""}`}
+			onClick={() => pickOrigin(i, j)}
+		></div>
+	);
 }
 
 export default GridSquare;
