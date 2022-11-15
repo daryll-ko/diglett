@@ -1,5 +1,7 @@
+import "./Footer.css";
+
 function Footer() {
-	return <footer>© Daryll Ko</footer>;
+	return <footer>© 2022 Daryll Ko</footer>;
 }
 
 export default Footer;
