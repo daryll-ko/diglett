@@ -18,7 +18,6 @@ function bfs_one_operation(queue, distances, visited, activateSquare) {
 	} else {
 		const [i, j] = queue.pop();
 		activateSquare(i, j);
-		console.log("act", i, j);
 		if (!visited[i][j]) {
 			for (let d = 0; d < 4; ++d) {
 				const i_to = i + DI[d],

@@ -63,7 +63,7 @@ function Main() {
 							activateSquare
 						)
 					);
-				}, 500);
+				}, 10);
 				return () => clearInterval(intervalId);
 			}
 		}
@@ -71,7 +71,7 @@ function Main() {
 
 	return (
 		<main>
-			<Grid grid={grid} pickOrigin={pickOrigin} />
+			<Grid grid={grid} pickOrigin={pickOrigin} distances={bfsData[1]} />
 		</main>
 	);
 }

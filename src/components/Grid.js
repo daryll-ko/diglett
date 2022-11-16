@@ -1,7 +1,7 @@
 import "./Grid.css";
 import GridSquare from "./GridSquare";
 
-function Grid({ grid, pickOrigin }) {
+function Grid({ grid, pickOrigin, distances }) {
 	const squares = grid.map(({ i, j, isOrigin, isActivated }, index) => (
 		<GridSquare
 			key={index}
@@ -10,6 +10,7 @@ function Grid({ grid, pickOrigin }) {
 			isOrigin={isOrigin}
 			isActivated={isActivated}
 			pickOrigin={pickOrigin}
+			distance={distances !== null ? distances[i][j] : -1}
 		/>
 	));
 
