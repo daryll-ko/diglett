@@ -2,17 +2,26 @@
 	align-items: center;
 	border: 1px solid black;
 	display: flex;
-	height: 50px;
+	height: 25px;
 	justify-content: center;
-	width: 50px;
+	width: 25px;
+}
+
+.fade {
+	animation: fade 0.5s ease-in-out;
+}
+
+@keyframes fade {
+	0% {
+		background-color: cyan;
+	}
+	100% {
+		background-color: white;
+	}
 }
 
 .origin {
 	background-color: yellow;
-}
-
-.activated {
-	background-color: lime;
 }
 
 .distance {

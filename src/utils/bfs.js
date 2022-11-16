@@ -12,17 +12,16 @@ function bfs_initialize(i, j, n, m) {
 	return [queue, distances, visited];
 }
 
-function bfs_one_operation(queue, distances, visited, activateSquare) {
+function bfs_one_operation(queue, distances, visited) {
 	if (queue.length === 0) {
 		return [queue, distances, visited];
 	} else {
 		const [i, j] = queue.pop();
-		activateSquare(i, j);
 		if (!visited[i][j]) {
 			for (let d = 0; d < 4; ++d) {
 				const i_to = i + DI[d],
 					j_to = j + DJ[d];
-				if (!(0 <= i_to && i_to < 10 && 0 <= j_to && j_to < 20)) {
+				if (!(0 <= i_to && i_to < 20 && 0 <= j_to && j_to < 40)) {
 					continue;
 				}
 				if (distances[i_to][j_to] > distances[i][j] + 1) {

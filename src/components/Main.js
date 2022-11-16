@@ -5,8 +5,8 @@ import "./Main.css";
 
 function gimmeGrid() {
 	let indices = [];
-	for (let i = 0; i < 10; ++i) {
-		for (let j = 0; j < 20; ++j) {
+	for (let i = 0; i < 20; ++i) {
+		for (let j = 0; j < 40; ++j) {
 			indices.push([i, j]);
 		}
 	}
@@ -29,17 +29,7 @@ function Main() {
 				isOrigin: i === i_to && j === j_to,
 			}))
 		);
-	};
-
-	const activateSquare = (i_to, j_to) => {
-		setGrid((currentGrid) =>
-			currentGrid.map(({ i, j, isOrigin, _ }) => ({
-				i,
-				j,
-				isOrigin,
-				isActivated: i === i_to && j === j_to,
-			}))
-		);
+		setBfsData([null, null, null]);
 	};
 
 	const [oi, oj] = grid.reduce(
@@ -52,16 +42,11 @@ function Main() {
 	useEffect(() => {
 		if (oi !== -1) {
 			if (bfsData[0] === null) {
-				setBfsData(bfs_initialize(oi, oj, 10, 20));
+				setBfsData(bfs_initialize(oi, oj, 20, 40));
 			} else {
 				const intervalId = setInterval(() => {
 					setBfsData(([currentQueue, currentDistances, currentVisited]) =>
-						bfs_one_operation(
-							currentQueue,
-							currentDistances,
-							currentVisited,
-							activateSquare
-						)
+						bfs_one_operation(currentQueue, currentDistances, currentVisited)
 					);
 				}, 10);
 				return () => clearInterval(intervalId);

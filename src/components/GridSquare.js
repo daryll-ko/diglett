@@ -1,14 +1,14 @@
 import "./GridSquare.css";
 
-function GridSquare({ i, j, isOrigin, isActivated, pickOrigin, distance }) {
+function GridSquare({ i, j, isOrigin, pickOrigin, distance }) {
 	return (
 		<div
 			className={`square ${isOrigin ? "origin" : ""} ${
-				isActivated ? "activated" : ""
+				!isOrigin && distance !== -1 && distance !== 20 * 40 ? "fade" : ""
 			}`}
 			onClick={() => pickOrigin(i, j)}
 		>
-			{distance !== -1 && distance !== 200 ? (
+			{distance !== -1 && distance !== 20 * 40 ? (
 				<p className="distance">{distance}</p>
 			) : (
 				"?"
