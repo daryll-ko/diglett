@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { bfs_initialize, bfs_one_operation } from "../utils/bfs";
 import Grid from "./Grid";
 import "./Main.css";
 
@@ -13,6 +14,7 @@ function gimmeGrid() {
 		i,
 		j,
 		isOrigin: false,
+		isActivated: false,
 	}));
 }
 
@@ -28,6 +30,44 @@ function Main() {
 			}))
 		);
 	};
+
+	const activateSquare = (i_to, j_to) => {
+		setGrid((currentGrid) =>
+			currentGrid.map(({ i, j, isOrigin, _ }) => ({
+				i,
+				j,
+				isOrigin,
+				isActivated: i === i_to && j === j_to,
+			}))
+		);
+	};
+
+	const [oi, oj] = grid.reduce(
+		(acc, { i, j, isOrigin, _ }) => (isOrigin ? [i, j] : acc),
+		[-1, -1]
+	);
+
+	const [bfsData, setBfsData] = useState([null, null, null]);
+
+	useEffect(() => {
+		if (oi !== -1) {
+			if (bfsData[0] === null) {
+				setBfsData(bfs_initialize(oi, oj, 10, 20));
+			} else {
+				const intervalId = setInterval(() => {
+					setBfsData(([currentQueue, currentDistances, currentVisited]) =>
+						bfs_one_operation(
+							currentQueue,
+							currentDistances,
+							currentVisited,
+							activateSquare
+						)
+					);
+				}, 500);
+				return () => clearInterval(intervalId);
+			}
+		}
+	}, [oi, oj, bfsData]);
 
 	return (
 		<main>

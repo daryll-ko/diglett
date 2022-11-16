@@ -1,9 +1,11 @@
 import "./GridSquare.css";
 
-function GridSquare({ i, j, isOrigin, pickOrigin }) {
+function GridSquare({ i, j, isOrigin, isActivated, pickOrigin }) {
 	return (
 		<div
-			className={`square ${isOrigin ? "origin" : ""}`}
+			className={`square ${isOrigin ? "origin" : ""} ${
+				isActivated ? "activated" : ""
+			}`}
 			onClick={() => pickOrigin(i, j)}
 		></div>
 	);

@@ -7,3 +7,7 @@
 .origin {
 	background-color: yellow;
 }
+
+.activated {
+	background-color: lime;
+}

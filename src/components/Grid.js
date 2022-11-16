@@ -2,12 +2,13 @@ import "./Grid.css";
 import GridSquare from "./GridSquare";
 
 function Grid({ grid, pickOrigin }) {
-	const squares = grid.map(({ i, j, isOrigin }, index) => (
+	const squares = grid.map(({ i, j, isOrigin, isActivated }, index) => (
 		<GridSquare
 			key={index}
 			i={i}
 			j={j}
 			isOrigin={isOrigin}
+			isActivated={isActivated}
 			pickOrigin={pickOrigin}
 		/>
 	));

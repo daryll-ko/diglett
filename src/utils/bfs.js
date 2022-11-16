@@ -12,15 +12,20 @@ function bfs_initialize(i, j, n, m) {
 	return [queue, distances, visited];
 }
 
-function bfs_one_operation(queue, distances, visited) {
+function bfs_one_operation(queue, distances, visited, activateSquare) {
 	if (queue.length === 0) {
-		return false;
+		return [queue, distances, visited];
 	} else {
 		const [i, j] = queue.pop();
+		activateSquare(i, j);
+		console.log("act", i, j);
 		if (!visited[i][j]) {
 			for (let d = 0; d < 4; ++d) {
 				const i_to = i + DI[d],
 					j_to = j + DJ[d];
+				if (!(0 <= i_to && i_to < 10 && 0 <= j_to && j_to < 20)) {
+					continue;
+				}
 				if (distances[i_to][j_to] > distances[i][j] + 1) {
 					distances[i_to][j_to] = distances[i][j] + 1;
 					queue.push([i_to, j_to]);
@@ -28,6 +33,8 @@ function bfs_one_operation(queue, distances, visited) {
 			}
 			visited[i][j] = true;
 		}
-		return true;
+		return [queue, distances, visited];
 	}
 }
+
+export { bfs_initialize, bfs_one_operation };
